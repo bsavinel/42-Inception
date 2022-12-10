@@ -32,4 +32,4 @@ COPY	script_wp.sh /script_wp.sh
 EXPOSE	3306
 EXPOSE	9000
 
-CMD []
+CMD [./script_wp.sh]
