@@ -1,0 +1,33 @@
+version: "3.9"
+
+service:
+
+  nginx:
+    build: 
+      context: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+    networks:
+      - docker-network
+    restart: always
+
+  mariadb:
+    build: 
+      context: ./requirements/mariadb
+    container_name: mariadb
+    networks:
+      - docker-network
+    restart: always
+
+  wordpress:
+    build: 
+      context: ./requirements/wordpress
+    container_name: wordpress
+    networks:
+      - docker-network
+    restart: always
+
+networks:
+  docker-network:
+    driver: bridge
