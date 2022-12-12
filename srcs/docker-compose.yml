@@ -8,6 +8,8 @@ service:
     container_name: nginx
     ports:
       - "443:443"
+    env_file:
+      - .env
     networks:
       - docker-network
     restart: always
@@ -16,9 +18,12 @@ service:
     build: 
       context: ./requirements/mariadb
     container_name: mariadb
+    env_file:
+      - .env
     networks:
       - docker-network
     restart: always
+    
 
   wordpress:
     build: 
@@ -27,6 +32,8 @@ service:
     networks:
       - docker-network
     restart: always
+    env_file:
+      - .env
 
 networks:
   docker-network:

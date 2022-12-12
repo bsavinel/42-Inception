@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# Varible for the script
-PASSWDDB="StrongPass123!"
-USER="bsavinel"
-
 #setup launch of mysql
 mysql_install_db  --datadir=/var/lib/mysql --user=mysql --auth-root-authentication-method=normal
 mkdir -p /run/mysqld
@@ -17,7 +13,10 @@ do
 done
 
 #setup database in mysql
-mysql -e "CREATE USER '$USER'@localhost IDENTIFIED BY '$PASSWDDB';"
-mysql -e "GRANT ALL PRIVILEGES ON *.* TO '$USER'@localhost IDENTIFIED BY '$PASSWDDB';"
+mysql -e "CREATE USER IF NOT EXISTS '$DB_USER'@localhost IDENTIFIED BY '$DB_PASSWORD';"
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@localhost IDENTIFIED BY '$DB_PASSWORD';"
+mysql -e "CREATE DATABASE IF NOT EXISTS $DB_WORDPRESS;"
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$ROOT_PASSWORD';"
 mysql -e "FLUSH PRIVILEGES;"
-mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
+
+mysqladmin shutdown

@@ -1,13 +1,18 @@
-wp core download	--locale=php8 \
-					--version='latest' \
+wp core download	--allow-root
 
-wp core install		--admin_user=\
-					--admin_password=\
-					--admin_email=\
-					--url=\
+wp config create	--dbname=$DB_NAME\
+					--dbuser=$DB_USER\
+					--dbpass=$DB_PASSWORD\
+					--dbhost=$DB_HOST\
+					--allow-root
+
+wp core install		--allow-root
+					--admin_user=$ADMIN_USER\
+					--admin_password=$ADMIN_PASSWORD\
+					--admin_email=$ADMIN@example.com\
+					--url=localhost\
+					--title="Inception"\
 					--skip-email
 
-wp config create	--dbname=\
-					--dbname=
 
 # wp user create   surement utile pour metre mettre le nouvel use non admin

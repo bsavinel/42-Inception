@@ -29,7 +29,5 @@ RUN		apk add --no-cache curl \
 RUN		curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
 COPY	script_wp.sh /script_wp.sh
-EXPOSE	3306
-EXPOSE	9000
 
 CMD [./script_wp.sh]

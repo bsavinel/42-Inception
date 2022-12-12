@@ -7,7 +7,6 @@ RUN		apk add --no-cache mariadb \
 
 COPY	./mariadb.conf /etc/my.cnf.d/mariadb-server.cnf
 COPY	./script.sh /script.sh
-EXPOSE	3306
 
 RUN		sh /script.sh
 
