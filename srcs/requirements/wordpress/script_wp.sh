@@ -5,7 +5,7 @@ wp config create	--allow-root\
 					--dbuser=$DB_USER\
 					--dbpass=$DB_PASSWORD\
 					--dbhost="mariadb"\
-					--path=""
+					--path="/var/www/wordpress/"
 
 wp core install		--allow-root
 					--admin_user=$ADMIN_USER\

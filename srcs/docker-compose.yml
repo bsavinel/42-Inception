@@ -1,6 +1,6 @@
 version: "3.9"
 
-service:
+services:
 
   nginx:
     build: 
@@ -41,13 +41,15 @@ service:
       - docker-network
     restart: always
 
-volume:
+volumes:
+
   vol_mariadb:
     driver: local
     driver_opts:
       type: none
       device: /home/bsavinel/data/vol_mariadb
       o: bind
+    
   vol_wordpress:
     driver: local
     driver_opts:
