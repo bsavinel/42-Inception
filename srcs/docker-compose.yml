@@ -10,6 +10,8 @@ service:
       - "443:443"
     env_file:
       - .env
+    volumes:
+      - vol_wordpress:/var/www/html
     networks:
       - docker-network
     restart: always
@@ -18,6 +20,8 @@ service:
     build: 
       context: ./requirements/mariadb
     container_name: mariadb
+    volumes:
+      - vol_mariadb:/var/lib/mysql
     env_file:
       - .env
     networks:
@@ -29,11 +33,27 @@ service:
     build: 
       context: ./requirements/wordpress
     container_name: wordpress
+    volumes:
+      - vol_wordpress:/var/www/html
+    env_file:
+      - .env
     networks:
       - docker-network
     restart: always
-    env_file:
-      - .env
+
+volume:
+  vol_mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/bsavinel/data/vol_mariadb
+      o: bind
+  vol_wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/bsavinel/data/vol_wordpress
+      o: bind
 
 networks:
   docker-network:

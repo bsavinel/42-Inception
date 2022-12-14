@@ -1,10 +1,11 @@
 wp core download	--allow-root
 
-wp config create	--dbname=$DB_NAME\
+wp config create	--allow-root\
+					--dbname=$DB_NAME\
 					--dbuser=$DB_USER\
 					--dbpass=$DB_PASSWORD\
-					--dbhost=$DB_HOST\
-					--allow-root
+					--dbhost="mariadb"\
+					--path=""
 
 wp core install		--allow-root
 					--admin_user=$ADMIN_USER\
