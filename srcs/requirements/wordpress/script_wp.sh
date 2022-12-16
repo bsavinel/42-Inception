@@ -1,6 +1,8 @@
 #!/bin/sh
 if [ ! -f $PROTECT_FILE ]
 then
+	sleep 30
+
 	wp core download	--allow-root
 
 	wp config create	--allow-root\
@@ -18,8 +20,9 @@ then
 						--title="Inception"\
 						--skip-email
 
+	# wp user create   surement utile pour metre mettre le nouvel use non admin
+
 	touch $PROTECT_FILE
 else
 	echo "worpress is already installed an parametrized"
 fi
-# wp user create   surement utile pour metre mettre le nouvel use non admin
