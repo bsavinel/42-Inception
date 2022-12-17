@@ -25,9 +25,16 @@ RUN		apk add --no-cache curl \
 		php8-pdo_mysql \
 		php8-pdo_sqlite \
 		php8-tokenizer \
-		php8-pecl-redis
+		php8-pecl-redis \
+		mariadb-client
+
+
 RUN		curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN		chmod +x wp-cli.phar
+RUN		mv wp-cli.phar /usr/local/bin/wp
+RUN		mkdir -p /var/www/wordpress
 
-COPY	script_wp.sh /script_wp.sh
 
-CMD [./script_wp.sh]
+COPY	./script_wp.sh /script_wp.sh
+
+CMD ["sh", "./script_wp.sh"]

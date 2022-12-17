@@ -8,6 +8,6 @@ RUN		apk add --no-cache mariadb \
 COPY	./mariadb.conf /etc/my.cnf.d/mariadb-server.cnf
 COPY	./script.sh /script.sh
 
-RUN		sh /script.sh
 
-CMD		["mysqld"]
+
+CMD		["sh", "/script.sh"]

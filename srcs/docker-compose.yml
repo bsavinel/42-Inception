@@ -14,6 +14,8 @@ services:
       - vol_wordpress:/var/www/html
     networks:
       - docker-network
+    depends_on:
+      - wordpress
     restart: always
 
   mariadb:
@@ -39,6 +41,8 @@ services:
       - .env
     networks:
       - docker-network
+    depends_on:
+      - mariadb
     restart: always
 
 volumes:
