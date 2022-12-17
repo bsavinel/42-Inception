@@ -31,4 +31,4 @@ then
 else
 	echo "Database already created"
 fi
-mysqld 
+exec mysqld 
