@@ -1,8 +1,7 @@
 #!/bin/sh
 if [ ! -f $PROTECT_FILE ]
 then
-	sleep 5
-
+	sleep 15
 	wp core download	--allow-root --path="/var/www/wordpress/"
 
 	wp config create	--allow-root\
@@ -15,7 +14,7 @@ then
 	wp core install		--allow-root\
 						--admin_user="$ADMIN_USER"\
 						--admin_password="$ADMIN_PASSWORD"\
-						--admin_email="$ADMIN"@example.com\
+						--admin_email="$ADMIN_USER"@example.com\
 						--url=bsavinel.42.fr\
 						--title="Inception"\
 						--skip-email\
@@ -32,4 +31,5 @@ then
 else
 	echo "worpress is already installed an parametrized"
 fi
+
 exec php-fpm8 -F
