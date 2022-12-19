@@ -13,7 +13,7 @@ services:
     volumes:
       - vol_wordpress:/var/www/html
     networks:
-      - docker-network
+      - net_inception
     depends_on:
       - wordpress
     restart: always
@@ -27,7 +27,7 @@ services:
     env_file:
       - .env
     networks:
-      - docker-network
+      - net_inception
     restart: always
     
 
@@ -36,11 +36,11 @@ services:
       context: ./requirements/wordpress
     container_name: wordpress
     volumes:
-      - vol_wordpress:/var/www/html
+      - vol_wordpress:/var/www/wordpress
     env_file:
       - .env
     networks:
-      - docker-network
+      - net_inception
     depends_on:
       - mariadb
     restart: always
@@ -62,5 +62,5 @@ volumes:
       o: bind
 
 networks:
-  docker-network:
+  net_inception:
     driver: bridge
