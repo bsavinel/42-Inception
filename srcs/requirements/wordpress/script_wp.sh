@@ -1,6 +1,8 @@
 #!/bin/sh
 if [ ! -f $PROTECT_FILE ]
 then
+	sleep 15
+
 	wp core download	--allow-root --path="/var/www/wordpress/"
 
 	wp config create	--allow-root\
