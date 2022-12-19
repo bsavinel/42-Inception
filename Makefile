@@ -6,26 +6,28 @@
 #    By: bsavinel <bsavinel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:25:26 by bsavinel          #+#    #+#              #
-#    Updated: 2022/12/18 14:26:08 by bsavinel         ###   ########.fr        #
+#    Updated: 2022/12/19 17:12:26 by bsavinel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
 	mkdir -p /home/bsavinel/data/vol_wordpress
 	mkdir -p /home/bsavinel/data/vol_mariadb
+	chmod 777 /home/bsavinel/data/vol_wordpress
+	chmod 777 /home/bsavinel/data/vol_mariadb
 	docker-compose -f ./srcs/docker-compose.yml up || true
 
 build:
 	docker-compose -f ./srcs/docker-compose.yml build
 
 in_mariabd:
-	docker-compose exec mariadb sh
+	docker exec -it mariadb sh
 
 in_wordpress:
-	docker-compose exec wordpress sh
+	docker exec -it wordpress sh
 
 in_nginx:
-	docker-compose exec nginx sh
+	docker exec -it nginx sh
 
 clean:
 	docker-compose -f ./srcs/docker-compose.yml down || true
@@ -33,7 +35,7 @@ clean:
 
 fclean: clean
 	docker volume prune -f || true
-	rm -rf /home/bsavinel/data/vol_mariadb || true
-	rm -rf /home/bsavinel/data/vol_wordpress || true
+	sudo rm -rf /home/bsavinel/data/vol_mariadb || true
+	sudo rm -rf /home/bsavinel/data/vol_wordpress || true
 
 re : fclean all

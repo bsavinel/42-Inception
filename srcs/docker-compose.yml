@@ -11,7 +11,7 @@ services:
     env_file:
       - .env
     volumes:
-      - vol_wordpress:/var/www/html
+      - vol_wordpress:/var/www/html/wordpress
     networks:
       - net_inception
     depends_on:
@@ -36,7 +36,7 @@ services:
       context: ./requirements/wordpress
     container_name: wordpress
     volumes:
-      - vol_wordpress:/var/www/wordpress
+      - vol_wordpress:/var/www/html/wordpress
     env_file:
       - .env
     networks:

@@ -14,7 +14,6 @@ RUN		chmod 777 /etc/ssl/certs/nginx-selfsigned.crt
 
 RUN		adduser -D -g 'www' www
 COPY	./nginx.conf /etc/nginx/nginx.conf
-COPY	./index.html /index.html
 
 EXPOSE	443
 

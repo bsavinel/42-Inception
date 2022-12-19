@@ -15,8 +15,9 @@ RUN		apk add --no-cache curl	\
 RUN		curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN		mv wp-cli.phar /usr/local/bin/wp
 RUN		chmod +x /usr/local/bin/wp
-RUN		mkdir -p /var/www/wordpress
-
+RUN		mkdir -p /var/www/html/wordpress
+RUN		rm /etc/php8/php-fpm.d/www.conf
+COPY	./www.conf /etc/php8/php-fpm.d/www.conf
 
 COPY	./script_wp.sh /script_wp.sh
 
