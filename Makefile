@@ -13,12 +13,13 @@
 all:
 	mkdir -p /home/bsavinel/data/vol_wordpress
 	mkdir -p /home/bsavinel/data/vol_mariadb
-	chmod 777 /home/bsavinel/data/vol_wordpress
-	chmod 777 /home/bsavinel/data/vol_mariadb
-	docker-compose -f ./srcs/docker-compose.yml up || true
+	sudo chmod 777 /home/bsavinel/data/vol_wordpress
+	sudo chmod 777 /home/bsavinel/data/vol_mariadb
+	docker-compose -f ./srcs/docker-compose.yml build || true
+	docker-compose -f ./srcs/docker-compose.yml up -d || true
 
 build:
-	docker-compose -f ./srcs/docker-compose.yml build
+	docker-compose -f ./srcs/docker-compose.yml build || true
 
 in_mariabd:
 	docker exec -it mariadb sh
@@ -39,3 +40,6 @@ fclean: clean
 	sudo rm -rf /home/bsavinel/data/vol_wordpress || true
 
 re : fclean all
+
+log :
+	docker-compose -f srcs/docker-compose.yml logs

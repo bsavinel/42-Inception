@@ -17,14 +17,14 @@ then
 	echo "Database is ready"
 
 	#setup database in mysql
-	mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
-	mysql -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
-	mysql -e "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
-	mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-	#mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY '$ROOT_PASSWORD';"
-	mysql -e "FLUSH PRIVILEGES;"
+	mysql -uroot --skip-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$ROOT_PASSWORD';"
+	mysql -uroot -p$ROOT_PASSWORD -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
+	mysql -uroot -p$ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';"
+	mysql -uroot -p$ROOT_PASSWORD -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+	mysql -uroot -p$ROOT_PASSWORD -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
+	mysql -uroot -p$ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 
-	mysqladmin shutdown
+	mysqladmin -uroot -p$ROOT_PASSWORD shutdown
 	touch "$PROTECT_FILE"
 else
 	echo "Database already created"
