@@ -6,6 +6,7 @@ services:
     build: 
       context: ./requirements/nginx
     container_name: nginx
+    image: nginx
     ports:
       - "443:443"
     env_file:
@@ -22,6 +23,7 @@ services:
     build: 
       context: ./requirements/mariadb
     container_name: mariadb
+    image: mariadb
     volumes:
       - vol_mariadb:/var/lib/mysql
     env_file:
@@ -35,6 +37,7 @@ services:
     build: 
       context: ./requirements/wordpress
     container_name: wordpress
+    image: wordpress
     volumes:
       - vol_wordpress:/var/www/html/wordpress
     env_file:
