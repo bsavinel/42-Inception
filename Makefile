@@ -21,14 +21,11 @@ all:
 build:
 	docker compose -f ./srcs/docker-compose.yml build || true
 
-in_mariabd:
-	docker exec -it mariadb sh
+stop:
+	docker compose -f ./srcs/docker-compose.yml stop || true
 
-in_wordpress:
-	docker exec -it wordpress sh
-
-in_nginx:
-	docker exec -it nginx sh
+down: stop
+	docker compose -f ./srcs/docker-compose.yml down || true
 
 clean:
 	docker compose -f ./srcs/docker-compose.yml stop || true
@@ -41,6 +38,15 @@ fclean: clean
 	sudo rm -rf /home/bsavinel/data/vol_wordpress || true
 
 re : fclean all
+
+in_mariabd:
+	docker exec -it mariadb sh
+
+in_wordpress:
+	docker exec -it wordpress sh
+
+in_nginx:
+	docker exec -it nginx sh
 
 log :
 	docker compose -f srcs/docker-compose.yml logs

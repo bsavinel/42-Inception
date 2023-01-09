@@ -1,15 +1,14 @@
-FROM	alpine:3.16.2
+FROM	debian:buster
 
-RUN		apk update
-RUN		apk upgrade
-RUN		apk add --no-cache curl	\
+RUN		apt-get update
+RUN		apt-get install  curl	\
 		php8					\
 		php8-common				\
 		php8-fpm				\
 		php8-mysqli				\
 		php8-phar				\
 		php8-mbstring			\
-		mariadb-client
+		mariadb-client -y
 
 
 RUN		curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
