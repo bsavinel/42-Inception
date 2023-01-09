@@ -1,9 +1,7 @@
-FROM	alpine:3.16.2
+FROM	debian:buster
 
-RUN		apk update
-RUN		apk upgrade --no-cache
-RUN		apk add --no-cache nginx \
-		openssl
+RUN		apt-get update
+RUN		apt-get install nginx openssl -y
 
 RUN		openssl req -x509 -days 365 -nodes \
 		-subj "/C=FR/ST=Paris/L=Paris/O=42/OU=42/CN=localhost/UID=bsavinel" \
@@ -12,7 +10,7 @@ RUN		openssl req -x509 -days 365 -nodes \
 RUN		chmod 777 /etc/ssl/private/nginx-selfsigned.key
 RUN		chmod 777 /etc/ssl/certs/nginx-selfsigned.crt
 
-RUN		adduser -D -g 'www' www
+RUN		adduser 'www'
 COPY	./nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE	443
