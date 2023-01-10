@@ -15,6 +15,7 @@ all:
 	mkdir -p /home/bsavinel/data/vol_mariadb
 	sudo chmod 777 /home/bsavinel/data/vol_wordpress
 	sudo chmod 777 /home/bsavinel/data/vol_mariadb
+	docker compose -f ./srcs/docker-compose.yml build
 	docker compose -f ./srcs/docker-compose.yml up -d 
 
 build:

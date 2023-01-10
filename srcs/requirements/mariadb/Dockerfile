@@ -7,4 +7,4 @@ RUN     apt-get update && \
 COPY	./mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY	./script.sh /script.sh
 
-CMD		["sh", "/script.sh"]
+CMD     ["sh", "/script.sh"]
