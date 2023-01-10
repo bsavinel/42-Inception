@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ ! -f $PROTECT_FILE ]
 then
-	sleep 15
+	sleep 10
 
 	wp core download	--allow-root --path="/var/www/html/wordpress/"
 
@@ -32,5 +32,4 @@ then
 else
 	echo "wordpress is already installed an parametrized"
 fi
-
-exec php-fpm8 -F
+exec php-fpm7.3 -F
